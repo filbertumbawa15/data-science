@@ -1,0 +1,317 @@
+{% load static %}
+<!DOCTYPE html>
+<!--
+    * CoreUI - Free Bootstrap Admin Template
+    * @version v4.2.2
+    * @link https://coreui.io/product/free-bootstrap-admin-template/
+    * Copyright (c) 2023 creativeLabs Łukasz Holeczek
+    * Licensed under MIT (https://github.com/coreui/coreui-free-bootstrap-admin-template/blob/main/LICENSE)
+    -->
+<!-- Breadcrumb-->
+<html lang="en">
+    <head>
+        <base href="./">
+        <!-- {% static 'css/style.css' %} -->
+        <title>CoreUI Free Bootstrap Admin Template</title>
+        <link rel="apple-touch-icon" sizes="57x57" href="{% static 'assets/favicon/apple-icon-57x57.png' %}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{% static 'assets/favicon/apple-icon-60x60.png' %}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{% static 'assets/favicon/apple-icon-72x72.png' %}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/favicon/apple-icon-76x76.png' %}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{% static 'assets/favicon/apple-icon-114x114.png' %}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{% static 'assets/favicon/apple-icon-120x120.png' %}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{% static 'assets/favicon/apple-icon-144x144.png' %}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{% static 'assets/favicon/apple-icon-152x152.png' %}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/favicon/apple-icon-180x180.png' %}">
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="{% static 'assets/favicon/android-icon-192x192.png' %}"
+        >
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="{% static 'assets/favicon/favicon-32x32.png' %}"
+        >
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="96x96"
+            href="{% static 'assets/favicon/favicon-96x96.png' %}"
+        >
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="{% static 'assets/favicon/favicon-16x16.png' %}"
+        >
+        <link rel="manifest" href="{% static 'assets/favicon/manifest.json' %}">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        <!-- Vendors styles-->
+        <link rel="stylesheet" href="{% static 'vendors/simplebar/css/simplebar.css' %}">
+        <link rel="stylesheet" href="{% static 'css/vendors/simplebar.css' %}">
+        <!-- Main styles for this application-->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <!-- We use those styles to show code examples, you should remove them in your application.-->
+        <link href="{% static 'css/examples.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+            <div class="sidebar-brand d-none d-md-flex">
+                <svg
+                    class="sidebar-brand-full"
+                    width="118"
+                    height="46"
+                    alt="CoreUI Logo"
+                >
+                    <use xlink:href="{% static 'assets/brand/coreui.svg' %}"></use>
+                </svg>
+                <svg
+                    class="sidebar-brand-narrow"
+                    width="46"
+                    height="46"
+                    alt="CoreUI Logo"
+                >
+                    <use xlink:href="{% static 'assets/brand/coreui.svg' %}"></use>
+                </svg>
+            </div>
+            <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <svg class="nav-icon">
+                            <use xlink:href="vendorstemplates//@coreui/icons/svg/free.svg#cil-speedometer"></use>
+                        </svg> Dashboard
+                    </a>
+                </li>
+            </ul>
+            <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+        </div>
+        <div class="wrapper d-flex flex-column min-vh-100 bg-light">
+            <header class="header header-sticky mb-4">
+                <div class="container-fluid">
+                    <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+                        <svg class="icon icon-lg">
+                            <use xlink:href="vendorstemplates//@coreui/icons/svg/free.svg#cil-menu"></use>
+                        </svg>
+                    </button>
+                    <a class="header-brand d-md-none" href="#">
+                        <svg width="118" height="46" alt="CoreUI Logo">
+                            <use xlink:href="templates/assets/brand/coreui.svg#full"></use>
+                        </svg>
+                    </a>
+                    <ul class="header-nav ms-3">
+                        <li class="nav-item dropdown">
+                            <a
+                                class="nav-link py-0"
+                                data-coreui-toggle="dropdown"
+                                href="#"
+                                role="button"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
+                                <div class="avatar avatar-md">
+                                    <img class="avatar-img" src="{% static 'assets/img/avatars/8.jpg' %}" alt="user@email.com">
+                                </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end pt-0">
+                                <div class="dropdown-header bg-light py-2">
+                                    <div class="fw-semibold">Account</div>
+                                </div>
+                                <a class="dropdown-item" href="#">
+                                    <svg class="icon me-2">
+                                        <use xlink:href="vendorstemplates//@coreui/icons/svg/free.svg#cil-account-logout"></use>
+                                    </svg> Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="header-divider"></div>
+                <div class="container-fluid">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb my-0 ms-2">
+                            <span>
+                                <b>Preprocessing Data</b>
+                            </span>
+                        </ol>
+                    </nav>
+                </div>
+            </header>
+            <div class="body flex-grow-1 px-3">
+                <div class="container-lg mb-4">
+                    <div class="input-group">
+                        <input
+                            type="file"
+                            class="form-control"
+                            id="inputGroupFile04"
+                            aria-describedby="inputGroupFileAddon04"
+                            aria-label="Upload"
+                        >
+                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-5">
+                            <div class="card mt-3">
+                                <div class="card-header">
+                                    <h6>Information</h6>
+                                </div>
+                                <div class="card-body">
+                                    <h6>Filename: usgs_main.csv</h6>
+                                    <h6>Attributes: 9</h6>
+                                    <h6>Raw Data: 75810</h6>
+                                </div>
+                            </div>
+                            <div class="card mt-3">
+                                <div class="card-header">
+                                    <h6>Attributes</h6>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th>
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value=""
+                                                        id="flexCheckDefault"
+                                                    >
+                                                </th>
+                                                <td>Mag</td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value=""
+                                                        id="flexCheckDefault"
+                                                    >
+                                                </th>
+                                                <td>Rms</td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        value=""
+                                                        id="flexCheckDefault"
+                                                    >
+                                                </th>
+                                                <td>Depth</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-7">
+                            <div class="card mt-3 mr-5">
+                                <div class="card-header">
+                                    <h6>Statistic Attributes</h6>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">No.</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">DType</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mag</td>
+                                                <td>float64</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Rms</td>
+                                                <td>float64</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td>Depth</td>
+                                                <td>float64</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card mt-3">
+                                <div class="card-header">
+                                    <strong>Chart</strong>
+                                    <span class="small ms-1">Bar</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="example">
+                                        <div class="tab-content rounded-bottom">
+                                            <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1001">
+                                                <div class="c-chart-wrapper">
+                                                    <canvas id="min-max"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <div>
+                    <a href="https://coreui.io">CoreUI</a>
+                    <a href="https://coreui.io">Bootstrap Admin Template</a>
+                    © 2023
+                creativeLabs.
+                </div>
+                <div class="ms-auto">Powered by&nbsp;
+                    <a href="https://coreui.io/docs/">CoreUI UI Components</a>
+                </div>
+            </footer>
+        </div>
+        <script src="{% static 'vendors/@coreui/coreui/js/coreui.bundle.min.js' %}"></script>
+        <script src="{% static 'vendors/simplebar/js/simplebar.min.js' %}"></script>
+        <script src="{% static 'vendors/chart.js/js/chart.min.js' %}"></script>
+        <script src="{% static 'vendors/@coreui/chartjs/js/coreui-chartjs.js' %}"></script>
+        <script src="{% static 'js/charts.js' %}"></script>
+        <script>
+        const minMaxChart = new Chart(document.getElementById('min-max'), {
+            type: 'bar',
+            data: {
+                labels: ['Mag', 'Rms', 'Depth'],
+                datasets: [{
+                    label: 'Min',
+                    backgroundColor: 'rgba(220, 220, 220, 0.5)',
+                    borderColor: 'rgba(220, 220, 220, 0.8)',
+                    highlightFill: 'rgba(220, 220, 220, 0.75)',
+                    highlightStroke: 'rgba(220, 220, 220, 1)',
+                    data: [random(), random(), random()]
+                }, {
+                    label: 'Max',
+                    backgroundColor: 'rgba(151, 187, 205, 0.5)',
+                    borderColor: 'rgba(151, 187, 205, 0.8)',
+                    highlightFill: 'rgba(151, 187, 205, 0.75)',
+                    highlightStroke: 'rgba(151, 187, 205, 1)',
+                    data: [random(), random(), random()]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+        </script>
+    </body>
+</html>
