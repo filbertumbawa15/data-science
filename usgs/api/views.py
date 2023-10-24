@@ -4,15 +4,17 @@ from rest_framework.response import Response
 from django.http import HttpResponse, JsonResponse
 import pandas as pd
 import json
-from .utils import calculate_quartal
+from .utils import fill_null_with_mean
+from .utils import visualizerDataElbow
+from sklearn.preprocessing import StandardScaler
 
 
 # @api_view(["POST"])
 def preprocessing(request):
     df = pd.read_csv("usgs_main.csv")
-    df = df.fillna("")
-
-    # print(max(list(df['mag'])))
+    before_cleaning = df.isnull().sum().to_dict()
+    df = fill_null_with_mean(df)
+    after_cleaning = df.isnull().sum().to_dict()
 
     d = (
         df.dtypes.to_frame("dtypes")
@@ -27,10 +29,12 @@ def preprocessing(request):
 
     with open("types.json", "r") as f:
         data_types = json.load(f)
+    
+    X = df[['mag', 'depth', 'rms']].values
 
-    upper_bound, lower_bound = calculate_quartal(df)
+    X = StandardScaler().fit_transform(X)
 
-    df_no_outlier = df[(df['mag'] > lower_bound) & (df['mag'] < upper_bound)]
+    model_elbow = visualizerDataElbow(X)
 
     response_data = {
         "data_head": df.head().to_dict("records"),
@@ -52,6 +56,9 @@ def preprocessing(request):
                 "min_rms": pd.to_numeric(df["rms"], errors="coerce").min(),
             }
         ),
+        "before_cleaning": before_cleaning,
+        "after_cleaning": after_cleaning,
+        "elbow_model": model_elbow,
     }
     return render(request, "base.html", response_data)
     # return JsonResponse(response_data)
