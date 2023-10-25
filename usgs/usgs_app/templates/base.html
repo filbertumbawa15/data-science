@@ -38,6 +38,9 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <!-- We use those styles to show code examples, you should remove them in your application.-->
     <link href="{% static 'css/examples.css' %}" rel="stylesheet">
+    <!-- Datatables -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 </head>
 
 <body>
@@ -289,18 +292,49 @@
                                         <span class="small ms-1">Method</span>
                                     </div>
                                     <div class="card-body">
-                                        <img src="data:image/png;base64,{{ elbow_model }}" alt="KElbowVisualizer" style="width: 100%;">
+                                        <img src="data:image/png;base64,{{ elbow_model }}" alt="KElbowVisualizer"
+                                            style="width: 100%;">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-lg-6">
                                 <div class="card mt-3">
                                     <div class="card-header">
-                                        <strong>Chart</strong>
-                                        <span class="small ms-1">Bar</span>
+                                        <strong>Cluster</strong>
+                                        <span class="small ms-1">Analytics</span>
                                     </div>
                                     <div class="card-body">
+                                        <img src="data:image/png;base64,{{ cluster_image }}" alt="ScatterPlot"
+                                            style="width: 100%;">
                                     </div>
+                                </div>
+                            </div>
+                            <div class="card mt-3">
+                                <div class="card-body">
+                                    <table id="example" class="table table-striped" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Place</th>
+                                                <th>Magnitudo</th>
+                                                <th>Depth</th>
+                                                <th>Rms</th>
+                                                <th>Type</th>
+                                                <th>Cluster</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for data_hasil_cluster in data_cluster %}
+                                            <tr>
+                                                <td>{{ data_hasil_cluster.place }}</td>
+                                                <td>{{ data_hasil_cluster.mag }}</td>
+                                                <td>{{ data_hasil_cluster.depth }}</td>
+                                                <td>{{ data_hasil_cluster.rms }}</td>
+                                                <td>{{ data_hasil_cluster.type }}</td>
+                                                <td>{{ data_hasil_cluster.cluster }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -412,10 +446,15 @@
     <script src="{% static 'vendors/simplebar/js/simplebar.min.js' %}"></script>
     <script src="{% static 'vendors/chart.js/js/chart.min.js' %}"></script>
     <script src="{% static 'vendors/@coreui/chartjs/js/coreui-chartjs.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script src="{% static 'js/charts.js' %}"></script>
     <script>
         var data_max = JSON.parse('{{ value_max|safe }}');
         var data_min = JSON.parse('{{ value_min|safe }}');
+
+        new DataTable('#example');
 
         var dataAbsolute = Object.values(data_min).map(function (value) {
             return Math.abs(value);

@@ -2,19 +2,26 @@ from rest_framework.decorators import api_view
 from django.shortcuts import render
 from rest_framework.response import Response
 from django.http import HttpResponse, JsonResponse
+import matplotlib.pyplot as plt
 import pandas as pd
 import json
 from .utils import fill_null_with_mean
 from .utils import visualizerDataElbow
 from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+from io import BytesIO
+import base64
 
 
 # @api_view(["POST"])
 def preprocessing(request):
+    #Ini tahap preprocessing nya (membaca dataset nya)
     df = pd.read_csv("usgs_main.csv")
     before_cleaning = df.isnull().sum().to_dict()
-    df = fill_null_with_mean(df)
+    #Menampilkan value sebelum di cleaning missing value
+    df = fill_null_with_mean(df) #INi adalah function yang kami buat di utils.py, yaitu untuk melakukan isnull data
     after_cleaning = df.isnull().sum().to_dict()
+    #Menampilkan value setelah di cleaning missing value 
 
     d = (
         df.dtypes.to_frame("dtypes")
@@ -34,7 +41,32 @@ def preprocessing(request):
 
     X = StandardScaler().fit_transform(X)
 
-    model_elbow = visualizerDataElbow(X)
+    kElbow = visualizerDataElbow(X)
+
+    img = BytesIO()
+    kElbow.show(outpath=img, format='png')
+    img.seek(0)
+
+    model_elbow = base64.b64encode(img.getvalue()).decode()
+
+    k = kElbow.elbow_value_
+    randomizer = 42
+    model_kmeans = KMeans(n_clusters=k, random_state=randomizer)
+    model_kmeans.fit(X)
+
+    labels_kmeans = model_kmeans.labels_
+
+    plt.scatter(X[:, 0], X[:, 1], c=labels_kmeans, cmap='rainbow')
+
+    plt.scatter(model_kmeans.cluster_centers_[:,0], model_kmeans.cluster_centers_[:,1], color='black')  
+
+    imgPlot = BytesIO()
+    plt.savefig(imgPlot, format='png')
+    img.seek(0)
+
+    cluster_image = base64.b64encode(imgPlot.getvalue()).decode()
+
+    df['cluster'] = model_kmeans.labels_
 
     response_data = {
         "data_head": df.head().to_dict("records"),
@@ -59,6 +91,8 @@ def preprocessing(request):
         "before_cleaning": before_cleaning,
         "after_cleaning": after_cleaning,
         "elbow_model": model_elbow,
+        "cluster_image": cluster_image,
+        "data_cluster": df.head(30).to_dict("records"),
     }
     return render(request, "base.html", response_data)
     # return JsonResponse(response_data)

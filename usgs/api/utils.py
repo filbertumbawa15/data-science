@@ -29,8 +29,4 @@ def visualizerDataElbow(data):
     tes_model = KMeans(random_state=42)
     visualizer = KElbowVisualizer(tes_model, k=(2,10))
     visualizer.fit(data)
-    img = BytesIO()
-    visualizer.show(outpath=img, format='png')
-    img.seek(0)
-
-    return base64.b64encode(img.getvalue()).decode()
+    return visualizer
