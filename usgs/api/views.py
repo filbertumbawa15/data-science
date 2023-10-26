@@ -12,6 +12,7 @@ from sklearn.cluster import KMeans
 from io import BytesIO
 import base64
 
+dataJson = None
 
 # @api_view(["POST"])
 def preprocessing(request):
@@ -68,6 +69,8 @@ def preprocessing(request):
 
     df['cluster'] = model_kmeans.labels_
 
+    dataJson = df.head().to_dict("records")
+
     response_data = {
         "data_head": df.head().to_dict("records"),
         "data_info": data_types,
@@ -92,7 +95,22 @@ def preprocessing(request):
         "after_cleaning": after_cleaning,
         "elbow_model": model_elbow,
         "cluster_image": cluster_image,
-        "data_cluster": df.head(30).to_dict("records"),
     }
     return render(request, "base.html", response_data)
     # return JsonResponse(response_data)
+
+def paginate_data(request):
+    page = int(request.GET.get('page', 1))
+    limit = 10
+
+    start_index = (page - 1) * limit
+    end_index = page * limit
+
+    paginate_data = dataJson[start_index:end_index]
+
+    return JsonResponse({
+        'data': paginate_data,
+        'draw': int(request.GET.get('draw', 1)),
+        'recordsTotal': len(dataJson),
+        'recordsFiltered': len(dataJson),
+    })
