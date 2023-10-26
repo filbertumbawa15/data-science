@@ -9,273 +9,213 @@
     -->
 <!-- Breadcrumb-->
 <html lang="en">
-    <head>
-        <base href="./">
-        <!-- {% static 'css/style.css' %} -->
-        <title>CoreUI Free Bootstrap Admin Template</title>
-        <link rel="apple-touch-icon" sizes="57x57" href="{% static 'assets/favicon/apple-icon-57x57.png' %}">
-        <link rel="apple-touch-icon" sizes="60x60" href="{% static 'assets/favicon/apple-icon-60x60.png' %}">
-        <link rel="apple-touch-icon" sizes="72x72" href="{% static 'assets/favicon/apple-icon-72x72.png' %}">
-        <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/favicon/apple-icon-76x76.png' %}">
-        <link rel="apple-touch-icon" sizes="114x114" href="{% static 'assets/favicon/apple-icon-114x114.png' %}">
-        <link rel="apple-touch-icon" sizes="120x120" href="{% static 'assets/favicon/apple-icon-120x120.png' %}">
-        <link rel="apple-touch-icon" sizes="144x144" href="{% static 'assets/favicon/apple-icon-144x144.png' %}">
-        <link rel="apple-touch-icon" sizes="152x152" href="{% static 'assets/favicon/apple-icon-152x152.png' %}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/favicon/apple-icon-180x180.png' %}">
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="192x192"
-            href="{% static 'assets/favicon/android-icon-192x192.png' %}"
-        >
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="{% static 'assets/favicon/favicon-32x32.png' %}"
-        >
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="96x96"
-            href="{% static 'assets/favicon/favicon-96x96.png' %}"
-        >
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="{% static 'assets/favicon/favicon-16x16.png' %}"
-        >
-        <link rel="manifest" href="{% static 'assets/favicon/manifest.json' %}">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="{% static 'assets/favicon/ms-icon-144x144.png' %}">
-        <meta name="theme-color" content="#ffffff">
-        <!-- Vendors styles-->
-        <link rel="stylesheet" href="{% static 'vendors/simplebar/css/simplebar.css' %}">
-        <link rel="stylesheet" href="{% static 'css/vendors/simplebar.css' %}">
-        <!-- Main styles for this application-->
-        <link href="{% static 'css/style.css' %}" rel="stylesheet">
-        <!-- We use those styles to show code examples, you should remove them in your application.-->
-        <link href="{% static 'css/examples.css' %}" rel="stylesheet">
-        <!-- Datatables -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-    </head>
-    <body>
-        <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
-            <div class="sidebar-brand d-none d-md-flex">
-                <svg
-                    class="sidebar-brand-full"
-                    width="118"
-                    height="46"
-                    alt="CoreUI Logo"
-                >
-                    <use xlink:href="{% static 'assets/brand/coreui.svg' %}"></use>
-                </svg>
-                <svg
-                    class="sidebar-brand-narrow"
-                    width="46"
-                    height="46"
-                    alt="CoreUI Logo"
-                >
-                    <use xlink:href="{% static 'assets/brand/coreui.svg' %}"></use>
-                </svg>
-            </div>
-            <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">
-                        <svg class="nav-icon">
-                            <use xlink:href="{% static 'vendors/@coreui/icons/svg/free.svg#cil-speedometer' %}"></use>
-                        </svg>
-                        Dashboard
-                    </a>
-                </li>
-            </ul>
-            <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+
+<head>
+    <base href="./">
+    <!-- {% static 'css/style.css' %} -->
+    <title>CoreUI Free Bootstrap Admin Template</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'assets/favicon/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'assets/favicon/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'assets/favicon/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/favicon/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'assets/favicon/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'assets/favicon/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'assets/favicon/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'assets/favicon/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/favicon/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'assets/favicon/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'assets/favicon/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'assets/favicon/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'assets/favicon/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Vendors styles-->
+    <link rel="stylesheet" href="{% static 'vendors/simplebar/css/simplebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vendors/simplebar.css' %}">
+    <!-- Main styles for this application-->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!-- We use those styles to show code examples, you should remove them in your application.-->
+    <link href="{% static 'css/examples.css' %}" rel="stylesheet">
+    <!-- Datatables -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+</head>
+
+<body>
+    <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+        <div class="sidebar-brand d-none d-md-flex">
+            <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
+                <use xlink:href="{% static 'assets/brand/coreui.svg' %}"></use>
+            </svg>
+            <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
+                <use xlink:href="{% static 'assets/brand/coreui.svg' %}"></use>
+            </svg>
         </div>
-        <div class="wrapper d-flex flex-column min-vh-100 bg-light">
-            <header class="header header-sticky mb-4">
-                <div class="container-fluid">
-                    <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
-                        <svg class="icon icon-lg">
-                            <use xlink:href="{% static 'vendors/@coreui/icons/svg/free.svg#cil-menu' %}"></use>
-                        </svg>
-                    </button>
-                    <a class="header-brand d-md-none" href="#">
-                        <svg width="118" height="46" alt="CoreUI Logo">
-                            <use xlink:href="{% static 'assets/brand/coreui.svg#full' %}"></use>
-                        </svg>
-                    </a>
-                    <ul class="header-nav ms-3">
-                        <li class="nav-item dropdown">
-                            <a
-                                class="nav-link py-0"
-                                data-coreui-toggle="dropdown"
-                                href="#"
-                                role="button"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                            >
-                                <div class="avatar avatar-md">
-                                    <img class="avatar-img" src="{% static 'assets/img/avatars/8.jpg' %}" alt="user@email.com">
-                                </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end pt-0">
-                                <div class="dropdown-header bg-light py-2">
-                                    <div class="fw-semibold">Account</div>
-                                </div>
-                                <a class="dropdown-item" href="#">
-                                    <svg class="icon me-2">
-                                        <use xlink:href="{% static 'vendors/@coreui/icons/svg/free.svg#cil-account-logout' %}"></use>
-                                    </svg>
-                                    Logout
-                                </a>
+        <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <svg class="nav-icon">
+                        <use xlink:href="{% static 'vendors/@coreui/icons/svg/free.svg#cil-speedometer' %}"></use>
+                    </svg>
+                    Dashboard
+                </a>
+            </li>
+        </ul>
+        <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+    </div>
+    <div class="wrapper d-flex flex-column min-vh-100 bg-light">
+        <header class="header header-sticky mb-4">
+            <div class="container-fluid">
+                <button class="header-toggler px-md-0 me-md-3" type="button"
+                    onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+                    <svg class="icon icon-lg">
+                        <use xlink:href="{% static 'vendors/@coreui/icons/svg/free.svg#cil-menu' %}"></use>
+                    </svg>
+                </button>
+                <a class="header-brand d-md-none" href="#">
+                    <svg width="118" height="46" alt="CoreUI Logo">
+                        <use xlink:href="{% static 'assets/brand/coreui.svg#full' %}"></use>
+                    </svg>
+                </a>
+                <ul class="header-nav ms-3">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="true" aria-expanded="false">
+                            <div class="avatar avatar-md">
+                                <img class="avatar-img" src="{% static 'assets/img/avatars/8.jpg' %}"
+                                    alt="user@email.com">
                             </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="header-divider"></div>
-                <div class="container-fluid">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb my-0 ms-2">
-                            <span>
-                                <b>Preprocessing Data</b>
-                            </span>
-                        </ol>
-                    </nav>
-                </div>
-            </header>
-            <div class="body flex-grow-1 px-3">
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button
-                            class="nav-link active"
-                            id="pills-preprocessing-tab"
-                            data-coreui-toggle="pill"
-                            data-coreui-target="#pills-preprocessing"
-                            type="button"
-                            role="tab"
-                            aria-controls="pills-preprocessing"
-                            aria-selected="true"
-                        >Preprocessing</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button
-                            class="nav-link"
-                            id="pills-cleaning-tab"
-                            data-coreui-toggle="pill"
-                            data-coreui-target="#pills-cleaning"
-                            type="button"
-                            role="tab"
-                            aria-controls="pills-cleaning"
-                            aria-selected="true"
-                        >Cleaning</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button
-                            class="nav-link"
-                            id="pills-clustering-tab"
-                            data-coreui-toggle="pill"
-                            data-coreui-target="#pills-clustering"
-                            type="button"
-                            role="tab"
-                            aria-controls="pills-clustering"
-                            aria-selected="true"
-                        >Clustering</button>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end pt-0">
+                            <div class="dropdown-header bg-light py-2">
+                                <div class="fw-semibold">Account</div>
+                            </div>
+                            <a class="dropdown-item" href="#">
+                                <svg class="icon me-2">
+                                    <use
+                                        xlink:href="{% static 'vendors/@coreui/icons/svg/free.svg#cil-account-logout' %}">
+                                    </use>
+                                </svg>
+                                Logout
+                            </a>
+                        </div>
                     </li>
                 </ul>
-                <div class="tab-content" id="pills-tabContent">
-                    <div
-                        class="tab-pane fade show active"
-                        id="pills-preprocessing"
-                        role="tabpanel"
-                        aria-labelledby="pills-preprocessing-tab"
-                        tabindex="0"
-                    >
-                        <div class="container-lg mb-4">
-                            <div class="row">
-                                <div class="col-sm-6 col-lg-5">
-                                    <div class="card mt-3">
-                                        <div class="card-header">
-                                            <h6>Information</h6>
-                                        </div>
-                                        <div class="card-body">
-                                            <h6>Filename: {{ dataset_file }}</h6>
-                                            <h6>Attributes: {{ total_attributes }}</h6>
-                                            <h6>Raw Data: {{ count_data }}</h6>
-                                        </div>
+            </div>
+            <div class="header-divider"></div>
+            <div class="container-fluid">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb my-0 ms-2">
+                        <span>
+                            <b>Preprocessing Data</b>
+                        </span>
+                    </ol>
+                </nav>
+            </div>
+        </header>
+        <div class="body flex-grow-1 px-3">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-preprocessing-tab" data-coreui-toggle="pill"
+                        data-coreui-target="#pills-preprocessing" type="button" role="tab"
+                        aria-controls="pills-preprocessing" aria-selected="true">Preprocessing</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-cleaning-tab" data-coreui-toggle="pill"
+                        data-coreui-target="#pills-cleaning" type="button" role="tab" aria-controls="pills-cleaning"
+                        aria-selected="true">Cleaning</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-clustering-tab" data-coreui-toggle="pill"
+                        data-coreui-target="#pills-clustering" type="button" role="tab" aria-controls="pills-clustering"
+                        aria-selected="true">Clustering</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-preprocessing" role="tabpanel"
+                    aria-labelledby="pills-preprocessing-tab" tabindex="0">
+                    <div class="container-lg mb-4">
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-5">
+                                <div class="card mt-3">
+                                    <div class="card-header">
+                                        <h6>Information</h6>
                                     </div>
-                                    <div class="card mt-3">
-                                        <div class="card-header">
-                                            <h6>Attributes</h6>
-                                        </div>
-                                        <div class="card-body">
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">Name</th>
-                                                        <th scope="col">DTypes</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {% for key, value in data_info.items %}
-                                                    <tr>
-                                                        <th>
-                                                            <input
-                                                                class="form-check-input"
-                                                                type="checkbox"
-                                                                value=""
-                                                                id="flexCheckDefault"
-                                                            >
-                                                        </th>
-                                                        <td>{{ key }}</td>
-                                                        <td>{{ value }}</td>
-                                                    </tr>
-                                                    {% endfor %}
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                    <div class="card-body">
+                                        <h6>Filename: {{ dataset_file }}</h6>
+                                        <h6>Attributes: {{ total_attributes }}</h6>
+                                        <h6>Raw Data: {{ count_data }}</h6>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-lg-7">
-                                    <div class="card mt-3 mr-5">
-                                        <div class="card-header">
-                                            <h6>Statistic Attributes</h6>
-                                        </div>
-                                        <div class="card-body">
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Place</th>
-                                                        <th scope="col">Magnitudo</th>
-                                                        <th scope="col">Depth</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {% for asdf in data_head %}
-                                                    <tr>
-                                                        <th scope="row">{{ asdf.place }}</th>
-                                                        <td>{{ asdf.mag }}</td>
-                                                        <td>{{ asdf.depth }}</td>
-                                                    </tr>
-                                                    {% endfor %}
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                <div class="card mt-3">
+                                    <div class="card-header">
+                                        <h6>Attributes</h6>
                                     </div>
-                                    <div class="card mt-3">
-                                        <div class="card-header">
-                                            <strong>Chart</strong>
-                                            <span class="small ms-1">Bar</span>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="example">
-                                                <div class="tab-content rounded-bottom">
-                                                    <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1001">
-                                                        <div class="c-chart-wrapper">
-                                                            <canvas id="min-max"></canvas>
-                                                        </div>
+                                    <div class="card-body">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">DTypes</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for key, value in data_info.items %}
+                                                <tr>
+                                                    <th>
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckDefault">
+                                                    </th>
+                                                    <td>{{ key }}</td>
+                                                    <td>{{ value }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-7">
+                                <div class="card mt-3 mr-5">
+                                    <div class="card-header">
+                                        <h6>Statistic Attributes</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Place</th>
+                                                    <th scope="col">Magnitudo</th>
+                                                    <th scope="col">Depth</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for asdf in data_head %}
+                                                <tr>
+                                                    <th scope="row">{{ asdf.place }}</th>
+                                                    <td>{{ asdf.mag }}</td>
+                                                    <td>{{ asdf.depth }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="card mt-3">
+                                    <div class="card-header">
+                                        <strong>Chart</strong>
+                                        <span class="small ms-1">Bar</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="example">
+                                            <div class="tab-content rounded-bottom">
+                                                <div class="tab-pane p-3 active preview" role="tabpanel"
+                                                    id="preview-1001">
+                                                    <div class="c-chart-wrapper">
+                                                        <canvas id="min-max"></canvas>
                                                     </div>
                                                 </div>
                                             </div>
@@ -285,103 +225,96 @@
                             </div>
                         </div>
                     </div>
-                    <div
-                        class="tab-pane fade show active"
-                        id="pills-cleaning"
-                        role="tabpanel"
-                        aria-labelledby="pills-cleaning-tab"
-                        tabindex="0"
-                    >
-                        <div class="container-lg mb-4">
-                            <div class="row">
-                                <div class="col-sm-6 col-lg-5">
-                                    <div class="card mt-3">
-                                        <div class="card-header">
-                                            <h6>Before Missing Value</h6>
-                                        </div>
-                                        <div class="card-body">
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Name</th>
-                                                        <th scope="col">DTypes</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {% for key, value in before_cleaning.items %}
-                                                    <tr>
-                                                        <td>{{ key }}</td>
-                                                        <td>{{ value }}</td>
-                                                    </tr>
-                                                    {% endfor %}
-                                                </tbody>
-                                            </table>
-                                        </div>
+                </div>
+                <div class="tab-pane fade show active" id="pills-cleaning" role="tabpanel"
+                    aria-labelledby="pills-cleaning-tab" tabindex="0">
+                    <div class="container-lg mb-4">
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-5">
+                                <div class="card mt-3">
+                                    <div class="card-header">
+                                        <h6>Before Missing Value</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">DTypes</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for key, value in before_cleaning.items %}
+                                                <tr>
+                                                    <td>{{ key }}</td>
+                                                    <td>{{ value }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-lg-7">
-                                    <div class="card mt-3">
-                                        <div class="card-header">
-                                            <h6>Before Missing Value</h6>
-                                        </div>
-                                        <div class="card-body">
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Name</th>
-                                                        <th scope="col">DTypes</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {% for key, value in after_cleaning.items %}
-                                                    <tr>
-                                                        <td>{{ key }}</td>
-                                                        <td>{{ value }}</td>
-                                                    </tr>
-                                                    {% endfor %}
-                                                </tbody>
-                                            </table>
-                                        </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-7">
+                                <div class="card mt-3">
+                                    <div class="card-header">
+                                        <h6>Before Missing Value</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">DTypes</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for key, value in after_cleaning.items %}
+                                                <tr>
+                                                    <td>{{ key }}</td>
+                                                    <td>{{ value }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div
-                        class="tab-pane fade show active"
-                        id="pills-clustering"
-                        role="tabpanel"
-                        aria-labelledby="pills-clustering-tab"
-                        tabindex="0"
-                    >
-                        <div class="container-lg mb-4">
-                            <div class="row">
-                                <div class="col-sm-6 col-lg-6">
-                                    <div class="card mt-3">
-                                        <div class="card-header">
-                                            <strong>Elbow</strong>
-                                            <span class="small ms-1">Method</span>
-                                        </div>
-                                        <div class="card-body">
-                                            <img src="data:image/png;base64,{{ elbow_model }}" alt="KElbowVisualizer" style="width: 100%;">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-6">
-                                    <div class="card mt-3">
-                                        <div class="card-header">
-                                            <strong>Cluster</strong>
-                                            <span class="small ms-1">Analytics</span>
-                                        </div>
-                                        <div class="card-body">
-                                            <img src="data:image/png;base64,{{ cluster_image }}" alt="ScatterPlot" style="width: 100%;">
-                                        </div>
-                                    </div>
-                                </div>
+                </div>
+                <div class="tab-pane fade show active" id="pills-clustering" role="tabpanel"
+                    aria-labelledby="pills-clustering-tab" tabindex="0">
+                    <div class="container-lg mb-4">
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6">
                                 <div class="card mt-3">
+                                    <div class="card-header">
+                                        <strong>Elbow</strong>
+                                        <span class="small ms-1">Method</span>
+                                    </div>
                                     <div class="card-body">
-                                        <table id="data-table" class="table table-striped" style="width:100%">
-                                            <!-- <tbody>
+                                        <img src="data:image/png;base64,{{ elbow_model }}" alt="KElbowVisualizer"
+                                            style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-6">
+                                <div class="card mt-3">
+                                    <div class="card-header">
+                                        <strong>Cluster</strong>
+                                        <span class="small ms-1">Analytics</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <img src="data:image/png;base64,{{ cluster_image }}" alt="ScatterPlot"
+                                            style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mt-3">
+                                <div class="card-body">
+                                    <table id="data-table" class="table table-striped" style="width:100%">
+                                        <!-- <tbody>
                                             {% for data_hasil_cluster in data_cluster %}
                                             <tr>
                                                 <td>{{ data_hasil_cluster.place }}</td>
@@ -392,14 +325,15 @@
                                                 <td>{{ data_hasil_cluster.cluster }}</td>
                                             </tr>
                                             {% endfor %}
-                                        </tbody> --></table>
-                                    </div>
+                                        </tbody> -->
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="container-lg mb-4">
+            </div>
+            <!-- <div class="container-lg mb-4">
                 <div class="row">
                     <div class="col-sm-6 col-lg-5">
                         <div class="card mt-3">
@@ -487,53 +421,72 @@
                     </div>
                 </div>
             </div> -->
-            </div>
-            <footer class="footer">
-                <div>
-                    <a href="https://coreui.io">CoreUI</a>
-                    <a href="https://coreui.io">Bootstrap Admin Template</a>
-                    © 2023
-                creativeLabs.
-                </div>
-                <div class="ms-auto">
-                    Powered by&nbsp;
-                    <a href="https://coreui.io/docs/">CoreUI UI Components</a>
-                </div>
-            </footer>
         </div>
-        <script src="{% static 'vendors/@coreui/coreui/js/coreui.bundle.min.js' %}"></script>
-        <script src="{% static 'vendors/simplebar/js/simplebar.min.js' %}"></script>
-        <script src="{% static 'vendors/chart.js/js/chart.min.js' %}"></script>
-        <script src="{% static 'vendors/@coreui/chartjs/js/coreui-chartjs.js' %}"></script>
-        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-        <script src="{% static 'js/charts.js' %}"></script>
-        <script>
-            
+        <footer class="footer">
+            <div>
+                <a href="https://coreui.io">CoreUI</a>
+                <a href="https://coreui.io">Bootstrap Admin Template</a>
+                © 2023
+                creativeLabs.
+            </div>
+            <div class="ms-auto">
+                Powered by&nbsp;
+                <a href="https://coreui.io/docs/">CoreUI UI Components</a>
+            </div>
+        </footer>
+    </div>
+    <script src="{% static 'vendors/@coreui/coreui/js/coreui.bundle.min.js' %}"></script>
+    <script src="{% static 'vendors/simplebar/js/simplebar.min.js' %}"></script>
+    <script src="{% static 'vendors/chart.js/js/chart.min.js' %}"></script>
+    <script src="{% static 'vendors/@coreui/chartjs/js/coreui-chartjs.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="{% static 'js/charts.js' %}"></script>
+    <script>
+
         var data_max = JSON.parse('{{ value_max|safe }}');
         var data_min = JSON.parse('{{ value_min|safe }}');
 
-        $('#data-table').DataTable({
-                "processing": true,
-                "serverSide": true,
-                "ajax": {
-                    "url": 'paginate_data/', // URL of your pagination endpoint
-                    "type": "GET",
-                    "data": function (d) {
-                        d.draw = d.draw;
-                        d.page = d.start / d.length + 1;
-                    }
-                },
-                "columns": [
-                    {"data": "place", "title": "Place"},
-                    {"data": "mag", "title": "Magnitudo"},
-                    {"data": "depth", "title": "Depth"},
-                    {"data": "type", "title": "Type"},
-                    {"data": "cluster", "title": "Cluster"},
-                ]
-                // Add other DataTable configurations as needed
+        $(document).ready(function(){
+            $.ajax({
+                url: '/prediction/',
+                type: "POST",
+                success:function(){
+                    console.log("berhasil")
+                }
             });
+        });
+
+        $('#data-table').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": '/paginate_data/', // URL of your pagination endpoint
+                "type": "POST",
+                "data": function (d) {
+                    d.draw = d.draw;
+                    d.page = d.start / d.length + 1;
+                }
+            },
+            "columns": [
+                { "data": "place", "title": "Place" },
+                { "data": "mag", "title": "Magnitudo" },
+                { "data": "depth", "title": "Depth" },
+                { "data": "type", "title": "Type" },
+                { "data": "cluster", "title": "Cluster" },
+            ],
+            "searching": true,  // Enable searching
+            "serverParams": function (settings, data) {
+                if (typeof data === 'undefined') {
+                    data = {};
+                }
+                var searchValue = $('#example_filter input').val();
+                if (searchValue) {
+                    data['search[value]'] = searchValue;  // Pass the search value to the server
+                }
+            }
+        });
 
         var dataAbsolute = Object.values(data_min).map(function (value) {
             return Math.abs(value);
@@ -574,6 +527,7 @@
                 responsive: true
             }
         });
-        </script>
-    </body>
+    </script>
+</body>
+
 </html>

@@ -8,14 +8,18 @@ import json
 from .utils import fill_null_with_mean
 from .utils import visualizerDataElbow
 from sklearn.preprocessing import StandardScaler
+from django.views.decorators.csrf import csrf_exempt
+from sklearn.model_selection import GridSearchCV
+from imblearn.over_sampling import SMOTENC
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.cluster import KMeans
 from io import BytesIO
 import base64
 
-dataJson = None
-
 # @api_view(["POST"])
 def preprocessing(request):
+    global dataJson
     #Ini tahap preprocessing nya (membaca dataset nya)
     df = pd.read_csv("usgs_main.csv")
     before_cleaning = df.isnull().sum().to_dict()
@@ -69,7 +73,7 @@ def preprocessing(request):
 
     df['cluster'] = model_kmeans.labels_
 
-    dataJson = df.head().to_dict("records")
+    dataJson = df
 
     response_data = {
         "data_head": df.head().to_dict("records"),
@@ -99,18 +103,58 @@ def preprocessing(request):
     return render(request, "base.html", response_data)
     # return JsonResponse(response_data)
 
+@csrf_exempt
 def paginate_data(request):
-    page = int(request.GET.get('page', 1))
+    page = int(request.POST.get('page', 1))
     limit = 10
 
     start_index = (page - 1) * limit
     end_index = page * limit
 
-    paginate_data = dataJson[start_index:end_index]
+    search_value = request.POST.get('search[value]', '')
+
+    filtered_data = [item for item in dataJson.to_dict("records") if search_value in str(item)]
+
+    paginate_data = filtered_data[start_index:end_index]
 
     return JsonResponse({
         'data': paginate_data,
-        'draw': int(request.GET.get('draw', 1)),
-        'recordsTotal': len(dataJson),
-        'recordsFiltered': len(dataJson),
+        'draw': int(request.POST.get('draw', 1)),
+        'recordsTotal': len(dataJson.to_dict("records")),
+        'recordsFiltered': len(filtered_data),
     })
+
+@csrf_exempt
+def prediction(request):
+    data_prediction = dataJson[['mag', 'depth', 'rms', 'latitude', 'longitude', 'type', 'cluster']]
+    data_prediction['type'] = data_prediction['type'].map({'earthquake':0, 'quarry blast':1, 'explosion':2, 'ice quake':3, 'chemical explosion':4, 'other event':5})
+
+    X = data_prediction.drop(labels='cluster', axis=1).values
+    y = data_prediction['cluster'].values
+
+    sm = SMOTENC(random_state=42, categorical_features=[5])
+    X_res, y_res = sm.fit_resample(X, y)
+
+    X_train, X_test, y_train, y_test = train_test_split(X_res, y_res, test_size=0.3, random_state=42, stratify=y_res)
+
+    scaler = StandardScaler()
+    scaler.fit(X_train)
+
+    # Standardization Feature
+    X_train_scaled = scaler.transform(X_train)
+    hyperparameters = {'n_neighbors': list(range(2, 21))}
+
+    model_knn = GridSearchCV(KNeighborsClassifier(), hyperparameters, cv=8, refit=True)
+
+    model_knn.fit(X_train_scaled, y_train)
+
+    k_params = model_knn.best_params_
+    k = k_params['n_neighbors']
+    model_knn = KNeighborsClassifier(n_neighbors=k)
+    model_knn.fit(X_train, y_train)
+
+    y_pred = model_knn.predict(X_test)
+
+    hasil_prediksi = model_knn.predict([[1.24, 1.610000, 0.04, 38.759666, -122.719666, 0]])
+
+    print(hasil_prediksi)
