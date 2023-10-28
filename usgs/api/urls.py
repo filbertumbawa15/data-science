@@ -7,4 +7,5 @@ urlpatterns = [
     path("preprocessing/", views.preprocessing, name='Home'),
     path('paginate_data/', views.paginate_data, name='pagination_data'),
     path('prediction/', views.prediction, name='prediction'),
+    path('init_prediction/', views.initPrediction, name='init_prediction'),
 ]

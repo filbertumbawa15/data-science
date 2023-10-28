@@ -125,7 +125,8 @@ def paginate_data(request):
     })
 
 @csrf_exempt
-def prediction(request):
+def initPrediction(request):
+    global model_knn
     data_prediction = dataJson[['mag', 'depth', 'rms', 'latitude', 'longitude', 'type', 'cluster']]
     data_prediction['type'] = data_prediction['type'].map({'earthquake':0, 'quarry blast':1, 'explosion':2, 'ice quake':3, 'chemical explosion':4, 'other event':5})
 
@@ -155,6 +156,93 @@ def prediction(request):
 
     y_pred = model_knn.predict(X_test)
 
-    hasil_prediksi = model_knn.predict([[1.24, 1.610000, 0.04, 38.759666, -122.719666, 0]])
+    return JsonResponse({
+        'result': "Already Done",
+    })
 
-    print(hasil_prediksi)
+@csrf_exempt
+def prediction(request):
+    inputMag = float(request.POST.get('inputMag'))
+    inputDepth = float(request.POST.get('inputDepth'))
+    inputRms = float(request.POST.get('inputRms'))
+    inputLatitude = float(request.POST.get('inputLatitude'))
+    inputLongitude = float(request.POST.get('inputLongitude'))
+    inputType = int(request.POST.get('inputType'))
+    # hasil_prediksi = model_knn.predict([[1.24, 1.610000, 0.04, 38.759666, -122.719666, 0]])
+    hasil_prediksi = model_knn.predict([[inputMag, inputDepth, inputRms, inputLatitude, inputLongitude, inputType]])
+    hasil_prediksi = int(hasil_prediksi)
+    keterangan = ''
+
+    if hasil_prediksi == 0:
+        if inputType == 0:
+            keterangan = "Guncangan masih dalam tahap aman"
+        elif inputType == 1:
+            keterangan = "Lokasi area tambang, masih dalam tahap aman"
+        elif inputType == 2:
+            keterangan = "Adanya erupsi, gempa masih dalam tahap aman"
+        elif inputType == 3:
+            keterangan = "Area lempeng es, masih dalam tahap aman"
+        elif inputType == 4:
+            keterangan = "Ujicoba nuklir, masih dalam tahap aman"
+        else:
+            keterangan = "Lokasi tidak terdeteksi"
+
+    elif hasil_prediksi == 1:
+        if inputType == 0:
+            keterangan = "Guncangan masih dalam tahap aman"
+        elif inputType == 1:
+            keterangan = "Lokasi area tambang, masih dalam tahap aman"
+        elif inputType == 2:
+            keterangan = "Adanya erupsi, gempa masih dalam tahap aman"
+        elif inputType == 3:
+            keterangan = "Area lempeng es, masih dalam tahap aman"
+        elif inputType == 4:
+            keterangan = "Ujicoba nuklir, masih dalam tahap aman"
+        else:
+            keterangan = "Lokasi tidak terdeteksi"
+
+    elif hasil_prediksi == 2:
+        if inputType == 0:
+            keterangan = "Guncangan lumayan kencang, lakukan evakuasi"
+        elif inputType == 1:
+            keterangan = "Lokasi area tambang, mohon lakukan evakuasi"
+        elif inputType == 2:
+            keterangan = "Lokasi area terjadinya erupsi gunung merapi, silahkan lakukan evakuasi agar tidak terkena dampak"
+        elif inputType == 3:
+            keterangan = "Kerusakan di area pemukiman dingin, harap lakukan evakuasi"
+        elif inputType == 4:
+            keterangan = "Ujicoba nuklir yang lumayan tinggi, silahkan menjauh dahulu dari area tersebut"
+        else:
+            keterangan = "Lokasi tidak terdeteksi"
+
+    elif hasil_prediksi == 3:
+        if inputType == 0:
+            keterangan = "Guncangan dalam tahap berpotensi tsunami"
+        elif inputType == 1:
+            keterangan = "Lokasi tambang dalam tahap tingkat tinggi, mohon lakukan evakuasi agar tidak terjadi longsor diarea tersebut"
+        elif inputType == 2:
+            keterangan = "Sudah memasuki tahap bahaya, silahkan lakukan evakuasi"
+        elif inputType == 3:
+            keterangan = "Retakan es yang lumayan, mohon menjauh dari area tersebut"
+        elif inputType == 4:
+            keterangan = "Ujicoba nukir tahap tinggi, silahkan lakukan evakuasi"
+        else:
+            keterangan = "Lokasi tidak terdeteksi"
+
+    elif hasil_prediksi == 4:
+        if inputType == 0:
+            keterangan = "Guncangan berpotensi tsunami, silahkan lakukan evakuasi secepatnya"
+        elif inputType == 1:
+            keterangan = "Lokasi area tambang tahap tinggi, harap lakukan evakusi segera agar tidak terjadi bencana"
+        elif inputType == 2:
+            keterangan = "Adanya letusan magma tingkat tinggi, segera lakukan evakuasi agar tidak terjadi dampak yang berbahaya"
+        elif inputType == 3:
+            keterangan = "Retakan es dalam tahap tinggi, segera lakukan evakuasi secepatnya"
+        elif inputType == 4:
+            keterangan = "Tahap bahaya, silahkan lakukan evakuasi dan segera lakukan penindakan agar tidak terjadi bahaya"
+        else:
+            keterangan = "Lokasi tidak terdeteksi"
+
+    return JsonResponse({
+        'hasil_prediksi': keterangan,
+    })
